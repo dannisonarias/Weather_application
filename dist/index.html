@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Application</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <main>
+        <div class="input-wrapper">
+            <h1>
+                Weather app
+            </h1>
+            <div class="user-input">
+                <form action="javascript:void(0);">
+                    <input class="location-input" type="text" placeholder="Location" required=true>
+                    <button class="btn submitButton btn-success">Get weather</button>
+                </form>
+            </div>
+
+            <div class="weather-output-wrapper">
+                <p class="location">location:</p>
+                <p class="temperature" >temperature:</p>
+                <p class="conditions" >conditions:</p>
+                <p class="gif" >gif:</p>
+            </div>
+        </div>
+        <div class="output-wrapper"></div>
+    </main>
+    <script src="main.js"></script>
+</body>
+
+</html>

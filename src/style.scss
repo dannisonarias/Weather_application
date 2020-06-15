@@ -1,0 +1,29 @@
+/* 6DB1BF */
+/* FFEAEC */
+/* 3F6C51 */
+/* F39A9D */
+/* 301A4B */
+*{
+    // border: .2px solid black;
+}
+
+main {
+    font-family:  Helvetica, sans-serif, Arial;
+    background-color: #3F6C51;
+    padding: 30px;
+}
+
+.input-wrapper {
+    background-color: #FFEAEC;
+    margin: 0 auto;
+    width:500px;
+    height: 600px;
+    text-align: center;
+    line-height: 1.5;
+    box-shadow: 2px 4px 15px 2px #000000;
+    border-radius: 10px;
+}
+
+button {
+    background-color: #6DB1BF !important;
+}
