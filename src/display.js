@@ -1,5 +1,7 @@
 import weather from './weather';
 
+let unit;
+
 const display = () => {
   const kelvin = 273;
 
@@ -13,7 +15,22 @@ const display = () => {
     locationOutput: document.querySelector('.weather-output-wrapper'),
     loading: document.querySelector('.fa-spinner'),
     error: document.querySelector('.error'),
+    radios: document.getElementsByName('unit'),
+  };
 
+  const getLocation = () => domElements.locationInput.value;
+
+  const showLoading = () => {
+    domElements.loading.classList.remove('hidden');
+  };
+
+  const getRadio = () => {
+    for (let i = 0, { length } = domElements.radios; i < length; i += 1) {
+      if (domElements.radios[i].checked) {
+        unit = domElements.radios[i].value;
+        break;
+      }
+    }
   };
 
   const setListeners = () => {
@@ -22,7 +39,11 @@ const display = () => {
 
   const kelvinToCelsius = (temp) => {
     temp = Math.round(temp - kelvin);
-    return temp;
+    if (unit === '1') {
+      return temp;
+    }
+    const cToFahr = (temp * 9) / 5 + 32;
+    return cToFahr;
   };
 
   const hideWeather = () => {
@@ -66,7 +87,9 @@ const display = () => {
   };
 
 
-  return { updateDom, setListeners, domElements };
+  return {
+    showLoading, getLocation, updateDom, setListeners, domElements, getRadio,
+  };
 };
 
 const displayUI = display();

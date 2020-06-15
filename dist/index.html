@@ -26,6 +26,16 @@
             </h1>
             <div class="user-input">
                 <form action="javascript:void(0);">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                            celsius
+                            <input type="radio" name="unit" id="celsius" autocomplete="off" value=1 checked>
+                        </label>
+                        <label class="btn btn-primary">
+                            farenheit
+                            <input type="radio" name="unit" id="farenheit" autocomplete="off">
+                        </label>
+                    </div>
                     <input class="location-input" type="text" placeholder=" Enter City" required=true>
                     <button class="btn submitButton btn-success">Get weather</button>
                     <i class="fa fa-spin fa-spinner hidden" aria-hidden="true"></i>
