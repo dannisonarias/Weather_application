@@ -1,4 +1,4 @@
-import weather from './weather';
+import weather from './apiController';
 
 let unit;
 
@@ -16,6 +16,7 @@ const display = () => {
     loading: document.querySelector('.fa-spinner'),
     error: document.querySelector('.error'),
     radios: document.getElementsByName('unit'),
+    giphy: document.querySelector('img'),
   };
 
   const getLocation = () => domElements.locationInput.value;
@@ -71,6 +72,20 @@ const display = () => {
     return weatherObj;
   };
 
+  const getGiphy = async () => {
+    let response = await fetch(`https://api.giphy.com/v1/gifs/search?q=${getLocation()}&limit=1&api_key=DydIn3gdelH5HdAWm7OiDfWcxF6osItx`, { mode: 'cors' });
+    response = await response.json();
+    return response;
+  };
+
+  const showGiphy = () => {
+    const giphy = getGiphy();
+    giphy.then((response) => {
+      console.log(response)
+      domElements.giphy.src = response.data[0].images.fixed_height_downsampled.url;
+    });
+  };
+
   const updateDom = (weatherPromise) => {
     weatherPromise.then((val) => {
       domElements.error.classList.add('hidden');
@@ -78,12 +93,15 @@ const display = () => {
       domElements.location.innerHTML = weatherObj.name;
       domElements.temperature.innerHTML = `Temperature: ${(weatherObj.temp)}°`;
       domElements.conditions.innerHTML = `Conditions: ${weatherObj.weather}`;
+      showGiphy();
       stopLoading();
       showWeather();
     }).catch(() => {
       hideWeather();
       domElements.error.classList.remove('hidden');
     });
+
+
   };
 
 
