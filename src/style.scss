@@ -4,14 +4,31 @@
 /* F39A9D */
 /* 301A4B */
 *{
+
     // border: .2px solid black;
 }
 
+footer {
+    height: 30px;
+}
 main {
     font-family:  Helvetica, sans-serif, Arial;
-    background-color: #3F6C51;
-    padding: 30px;
 }
+// Nav-BAR
+nav {
+    color: white;
+    background-color: #301A4B;
+    height: 45px;
+    margin-bottom: 30px;
+}
+
+.fa-github{
+    color: white;
+    &:hover{
+        color: black;
+    }
+}
+// END
 
 .input-wrapper {
     background-color: #FFEAEC;
@@ -22,6 +39,22 @@ main {
     line-height: 1.5;
     box-shadow: 2px 4px 15px 2px #000000;
     border-radius: 10px;
+}
+
+.location-input{
+    transform: translateY(2px);
+    height: 38px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+}
+
+.weather-output-wrapper {
+    font-size: 35px;
+}
+
+.hidden {
+    display: none;
 }
 
 button {
