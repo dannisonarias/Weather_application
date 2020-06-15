@@ -1,37 +1,32 @@
-/* 6DB1BF */
-/* FFEAEC */
-/* 3F6C51 */
-/* F39A9D */
-/* 301A4B */
-*{
-
-    // border: .2px solid black;
-}
+$color1:rgb(85, 157, 250);
+$color3:rgb(83, 245, 148);
+$color0:rgb(23, 199, 93);
+$color4: #F39A9D;
+$color5: rgb(255, 255, 255);
 
 footer {
     height: 30px;
 }
 main {
+    color: $color5;
     font-family:  Helvetica, sans-serif, Arial;
 }
 // Nav-BAR
 nav {
-    color: white;
-    background-color: #301A4B;
+    background-color: #6DB1BF;
     height: 45px;
     margin-bottom: 30px;
 }
 
 .fa-github{
-    color: white;
     &:hover{
-        color: black;
+        color: rgb(0, 0, 0);
     }
 }
 // END
 
 .input-wrapper {
-    background-color: #FFEAEC;
+    background-color: $color1;
     margin: 0 auto;
     width:500px;
     height: 600px;
@@ -58,5 +53,8 @@ nav {
 }
 
 button {
-    background-color: #6DB1BF !important;
+    background-color: $color3 !important;
+    &:hover {
+        background-color: $color0 !important;
+    }
 }
