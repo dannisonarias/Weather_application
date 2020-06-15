@@ -1,5 +1,3 @@
-import display from './display';
-
 const key = '0cb32602c971eeb40dcaeffd18a02caf';
 
 const main = () => {
@@ -9,17 +7,7 @@ const main = () => {
     response = await response.json();
     return response;
   };
-
-  const loader = () => {
-    display.showLoading();
-    const city = display.getLocation();
-    const weatherPromise = getWeather(city);
-    display.updateDom(weatherPromise);
-    display.getRadio();
-  };
-
-
-  return { loader };
+  return { getWeather };
 };
 
 const weather = main();

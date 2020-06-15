@@ -34,9 +34,6 @@ const display = () => {
     }
   };
 
-  const setListeners = () => {
-    domElements.submitButton.addEventListener('click', weather.loader, false);
-  };
 
   const kelvinToCelsius = (temp) => {
     temp = Math.round(temp - kelvin);
@@ -85,6 +82,7 @@ const display = () => {
     });
   };
 
+
   const updateDom = (weatherPromise) => {
     weatherPromise.then((val) => {
       domElements.error.classList.add('hidden');
@@ -101,6 +99,17 @@ const display = () => {
     });
   };
 
+  const loader = () => {
+    showLoading();
+    const city = getLocation();
+    const weatherPromise = weather.getWeather(city);
+    updateDom(weatherPromise);
+    getRadio();
+  };
+
+  const setListeners = () => {
+    domElements.submitButton.addEventListener('click', loader, false);
+  };
 
   return {
     showLoading, getLocation, updateDom, setListeners, domElements, getRadio,
