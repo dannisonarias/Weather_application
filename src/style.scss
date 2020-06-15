@@ -1,64 +1,65 @@
 $color1:rgb(85, 157, 250);
 $color3:rgb(83, 245, 148);
 $color0:rgb(23, 199, 93);
-$color4: #F39A9D;
 $color5: rgb(255, 255, 255);
 
 footer {
-    height: 30px;
+  height: 30px;
 }
+
 main {
-    color: $color5;
-    font-family:  Helvetica, sans-serif, Arial;
+  color: $color5;
+  font-family: Helvetica, sans-serif, Arial;
 }
 // Nav-BAR
 nav {
-    background-color: #6DB1BF;
-    height: 45px;
-    margin-bottom: 30px;
+  background-color: #6db1bf;
+  height: 45px;
+  margin-bottom: 30px;
 }
 
-.fa-github{
-    &:hover{
-        color: rgb(0, 0, 0);
-    }
+.fa-github {
+  &:hover {
+    color: rgb(0, 0, 0);
+  }
 }
 // END
 
 .input-wrapper {
-    background-color: $color1;
-    margin: 0 auto;
-    width:500px;
-    height: 600px;
-    text-align: center;
-    line-height: 1.5;
-    box-shadow: 2px 4px 15px 2px #000000;
-    border-radius: 10px;
+  background-color: $color1;
+  margin: 0 auto;
+  width: 500px;
+  height: 600px;
+  text-align: center;
+  line-height: 1.5;
+  box-shadow: 2px 4px 15px 2px #000;
+  border-radius: 10px;
 }
 
-.location-input{
-    transform: translateY(2px);
-    height: 38px;
-    width: 300px;
-    border-radius: 5px;
-    background-color: rgb(255, 255, 255);
+.location-input {
+  transform: translateY(2px);
+  height: 38px;
+  width: 300px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
 }
 
 .weather-output-wrapper {
-    font-size: 35px;
+  font-size: 35px;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 button {
-    background-color: $color3 !important;
-    &:hover {
-        background-color: $color0 !important;
-    }
+  background-color: $color3 !important;
+
+  &:hover {
+    background-color: $color0 !important;
+  }
 }
 
 img {
-    box-shadow: 2px 4px 15px 0px #000000;
+  box-shadow: 2px 4px 15px 0 #000;
 }

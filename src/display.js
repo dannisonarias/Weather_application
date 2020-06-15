@@ -81,7 +81,6 @@ const display = () => {
   const showGiphy = () => {
     const giphy = getGiphy();
     giphy.then((response) => {
-      console.log(response)
       domElements.giphy.src = response.data[0].images.fixed_height_downsampled.url;
     });
   };
@@ -100,8 +99,6 @@ const display = () => {
       hideWeather();
       domElements.error.classList.remove('hidden');
     });
-
-
   };
 
 
