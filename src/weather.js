@@ -1,31 +1,30 @@
-import display from './display.js'
+import display from './display';
+
 const key = '0cb32602c971eeb40dcaeffd18a02caf';
 
 const main = () => {
-    const loader = () => {
-        showLoading();
-        const city = getLocation();
-        const weatherPromise = getWeather(city);
-        display.updateDom(weatherPromise)
-    }
+  const showLoading = () => {
+    display.domElements.loading.classList.remove('hidden');
+  };
+  const getWeather = async (city) => {
+    const base = 'https://api.openweathermap.org/data/2.5/weather';
+    let response = await fetch(`${base}?q=${city}&APPID=${key}`, { mode: 'cors' });
+    response = response.json();
+    return response;
+  };
 
-    const showLoading = () =>{
-        display.domElements.loading.classList.remove('hidden')
-    }
+  const getLocation = () => display.domElements.locationInput.value;
 
-    const getLocation = () =>{
-        return display.domElements.locationInput.value
-    }
+  const loader = () => {
+    showLoading();
+    const city = getLocation();
+    const weatherPromise = getWeather(city);
+    display.updateDom(weatherPromise);
+  };
 
-    const getWeather = async (city, units, action) => {
-        const base = 'https://api.openweathermap.org/data/2.5/weather';
-        let response = await fetch(`${base}?q=${city}&APPID=${key}`, { mode: 'cors' });
-        response = response.json()
-        return response
-      };
 
-    return {loader}
-}
+  return { loader };
+};
 
 const weather = main();
-export default weather
+export default weather;

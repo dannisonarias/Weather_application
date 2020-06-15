@@ -1,10 +1,8 @@
-import _ from 'lodash';
-import './style.scss'
-import display from './display.js'
-import weather from './weather.js'
+import './style.scss';
+import display from './display';
 
-const main = () =>{
-   display.setListeners()
-}
+const main = () => {
+  display.setListeners();
+};
 
 main();
