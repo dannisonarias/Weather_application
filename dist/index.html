@@ -28,16 +28,6 @@
             </h1>
             <div class="user-input">
                 <form action="javascript:void(0);">
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-primary active">
-                            celsius
-                            <input type="radio" name="unit" id="celsius" autocomplete="off" value=1 checked>
-                        </label>
-                        <label class="btn btn-primary">
-                            farenheit
-                            <input type="radio" name="unit" id="farenheit" autocomplete="off">
-                        </label>
-                    </div>
                     <input class="location-input" type="text" placeholder=" Enter City" required=true>
                     <button class="btn submitButton btn-success">Get weather</button>
                     <i class="fa fa-spin fa-spinner hidden" aria-hidden="true"></i>
@@ -45,13 +35,27 @@
             </div>
             <h1 class="error alert alert-warning hidden">Can't find City</h1>
             <div class="weather-output-wrapper hidden">
+                <p class="country">Country:</p>
                 <p class="location">Location:</p>
-                <p><i class="fa fa-thermometer-empty fa-lg mr-1" aria-hidden="true"></i><span
-                        class="temperature">Temperature:</span></p>
+                <div class="d-flex pl-5">
+                    <i class="fa fa-thermometer-empty fa-lg mr-1" aria-hidden="true"></i>
+                    <span class="temperature">Temperature:</span>
+                    <span class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                            C
+                            <span class="radioc"><input type="radio" name="unit" id="celsius"  autocomplete="off" value=1 checked></span>
+                        </label>
+                        <label class="btn btn-primary">
+                            F
+                            <span class="radiof"><input type="radio" name="unit" id="fahrenheit" autocomplete="off"></span>
+                        </label>
+                    </span>
+                </div>
+
                 <p class="conditions">Conditions:</p>
             </div>
             <div class="img">
-                <img src="#" alt="">
+                <img src="#" class="mt-5" alt="">
             </div>
         </div>
         <div class="output-wrapper"></div>

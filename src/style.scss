@@ -29,7 +29,9 @@ nav {
   background-color: $color1;
   margin: 0 auto;
   width: 500px;
-  height: 600px;
+  min-height: 300px;
+  height: min-content;
+  padding-bottom: 50px;
   text-align: center;
   line-height: 1.5;
   box-shadow: 2px 4px 15px 2px #000;

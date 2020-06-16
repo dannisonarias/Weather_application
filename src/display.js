@@ -1,10 +1,12 @@
 import weather from './apiController';
 
-let unit;
 
 const display = () => {
   const kelvin = 273;
-
+  let celsius;
+  let fahrenheit;
+  let temp;
+  let city;
   const domElements = {
     location: document.querySelector('.location'),
     temperature: document.querySelector('.temperature'),
@@ -15,33 +17,16 @@ const display = () => {
     locationOutput: document.querySelector('.weather-output-wrapper'),
     loading: document.querySelector('.fa-spinner'),
     error: document.querySelector('.error'),
-    radios: document.getElementsByName('unit'),
+    radioc: document.querySelector('#celsius'),
+    radiof: document.querySelector('#fahrenheit'),
     giphy: document.querySelector('img'),
+    country: document.querySelector('.country'),
   };
 
   const getLocation = () => domElements.locationInput.value;
 
   const showLoading = () => {
     domElements.loading.classList.remove('hidden');
-  };
-
-  const getRadio = () => {
-    for (let i = 0, { length } = domElements.radios; i < length; i += 1) {
-      if (domElements.radios[i].checked) {
-        unit = domElements.radios[i].value;
-        break;
-      }
-    }
-  };
-
-
-  const kelvinToCelsius = (temp) => {
-    temp = Math.round(temp - kelvin);
-    if (unit === '1') {
-      return temp;
-    }
-    const cToFahr = (temp * 9) / 5 + 32;
-    return cToFahr;
   };
 
   const hideWeather = () => {
@@ -61,7 +46,7 @@ const display = () => {
       weather: val.weather[0].description,
       description: val.weather[0].main,
       name: val.name,
-      temp: kelvinToCelsius(val.main.temp),
+      temp: val.main.temp,
       flike: val.main.feels_like,
       humidity: val.main.humidity,
       country: val.sys.country,
@@ -69,28 +54,58 @@ const display = () => {
     return weatherObj;
   };
 
-  const getGiphy = async () => {
-    let response = await fetch(`https://api.giphy.com/v1/gifs/search?q=${getLocation()}&limit=1&api_key=DydIn3gdelH5HdAWm7OiDfWcxF6osItx`, { mode: 'cors' });
+  const getGiphy = async (word) => {
+    let response = await fetch(`https://api.giphy.com/v1/gifs/search?q=${word}&limit=1&api_key=DydIn3gdelH5HdAWm7OiDfWcxF6osItx`, { mode: 'cors' });
     response = await response.json();
     return response;
   };
 
-  const showGiphy = () => {
-    const giphy = getGiphy();
+  const showGiphy = (word) => {
+    const giphy = getGiphy(word);
     giphy.then((response) => {
       domElements.giphy.src = response.data[0].images.fixed_height_downsampled.url;
     });
   };
 
+  const removeMarginGiphy = () => {
+    domElements.giphy.classList.remove('mt-5');
+  };
+
+  const celOrFar = (val) => {
+    if (val === 'C') {
+      domElements.temperature.innerHTML = `Temperature: ${celsius} °`;
+    } else {
+      domElements.temperature.innerHTML = `Temperature: ${fahrenheit} °`;
+    }
+  };
+
+  const addRadiosListener = () => {
+    domElements.radioc.addEventListener('change', () => {
+      if (domElements.radioc.checked) {
+        celOrFar('C');
+      } else {
+        celOrFar('F');
+      }
+    });
+  };
+
+  const updateTemps = () => {
+    celsius = Math.round(temp - kelvin);
+    fahrenheit = Math.round(((temp - kelvin) * 9) / 5 + 32);
+  };
 
   const updateDom = (weatherPromise) => {
     weatherPromise.then((val) => {
       domElements.error.classList.add('hidden');
       const weatherObj = formatWeather(val);
+      temp = weatherObj.temp;
+      updateTemps(temp);
+      domElements.country.innerHTML = `Country: ${weatherObj.country}`;
       domElements.location.innerHTML = weatherObj.name;
-      domElements.temperature.innerHTML = `Temperature: ${(weatherObj.temp)}°`;
+      domElements.temperature.innerHTML = `Temperature: ${(celsius)}°`;
       domElements.conditions.innerHTML = `Conditions: ${weatherObj.weather}`;
-      showGiphy();
+      showGiphy(city);
+      removeMarginGiphy();
       stopLoading();
       showWeather();
     }).catch(() => {
@@ -99,20 +114,28 @@ const display = () => {
     });
   };
 
+  const setChecked = () => {
+    domElements.radioc.checked = true;
+    domElements.radiof.checked = false;
+  };
+
   const loader = () => {
+    setChecked();
+    addRadiosListener();
     showLoading();
-    const city = getLocation();
+    city = getLocation();
     const weatherPromise = weather.getWeather(city);
     updateDom(weatherPromise);
-    getRadio();
   };
 
   const setListeners = () => {
+    showGiphy('weather');
+    domElements.radiof.addEventListener('click', celOrFar, false);
     domElements.submitButton.addEventListener('click', loader, false);
   };
 
   return {
-    showLoading, getLocation, updateDom, setListeners, domElements, getRadio,
+    showLoading, getLocation, updateDom, setListeners, domElements,
   };
 };
 
